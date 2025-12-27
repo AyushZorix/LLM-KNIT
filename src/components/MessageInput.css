@@ -1,0 +1,123 @@
+/* ===============================
+   MESSAGE INPUT CONTAINER
+   =============================== */
+
+.message-input-container {
+  padding: 1.5rem 1rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+}
+
+/* Center input container when sidebar is closed */
+.chat-container.sidebar-closed .message-input-container {
+  max-width: 768px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ===============================
+   MESSAGE INPUT WRAPPER
+   =============================== */
+
+.message-input-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  width: 100%;
+  position: relative;
+  pointer-events: auto;
+}
+
+/* ===============================
+   TEXTAREA INPUT
+   =============================== */
+
+.message-input {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  padding-right: 3rem;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-xl);
+  font-size: 1rem;
+  font-family: inherit;
+  resize: none;
+  min-height: 52px;
+  max-height: 200px;
+  overflow-y: auto;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  outline: none;
+  cursor: text;
+  pointer-events: auto;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.message-input:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1), var(--shadow-sm);
+}
+
+.message-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--bg-tertiary);
+}
+
+.message-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* ===============================
+   SEND BUTTON
+   =============================== */
+
+.send-button {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.send-button:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+.send-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.send-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.send-button svg {
+  width: 16px;
+  height: 16px;
+}
