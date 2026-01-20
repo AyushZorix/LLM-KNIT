@@ -4,7 +4,7 @@ Generates hypothetical answers using Gemini API and creates embeddings.
 """
 
 import os
-from google import genai
+import google.generativeai as genai
 from sentence_transformers import SentenceTransformer
 from typing import Dict, List, Tuple
 import numpy as np
@@ -26,8 +26,9 @@ class HyDEPipeline:
         if not self.api_key:
             raise ValueError("GEMINI_API_KEY not found in environment variables")
         
-        # Initialize new Gemini client
-        self.client = genai.Client(api_key=self.api_key)
+        # Initialize Gemini API
+        genai.configure(api_key=self.api_key)
+        self.model = genai.GenerativeModel(self.model_name)
         
         # Initialize embedding model
         embedding_model_name = os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
@@ -51,10 +52,7 @@ Query: {query}
 Answer:"""
         
         try:
-            response = self.client.models.generate_content(
-                model=self.model_name,
-                contents=prompt
-            )
+            response = self.model.generate_content(prompt)
             hyde_response = response.text.strip()
             return hyde_response
         except Exception as e:

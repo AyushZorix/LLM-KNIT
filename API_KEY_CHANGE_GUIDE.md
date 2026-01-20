@@ -60,3 +60,9 @@ npm run dev
 - The backend server caches the API key in memory
 - Changing .env while server is running has no effect
 - Only restarting the backend picks up the new API key
+
+
+
+
+pkill -f "main.py" || true nt sleep 3 && curl -s http://localhost:8000/health
+cd /Users/ayushbhandari/Downloads/knit-llm/backend && /Users/ayushbhandari/Downloads/knit-llm/.venv/bin/python main.py nt
